@@ -1,8 +1,19 @@
-function showMessage() {
-  alert("Welcome to BSmart! Your smart journey starts here.");
-}
+const startLearningButton = document.querySelector('#start-learning');
+const focusCards = document.querySelectorAll('.focus-card');
 
-const today = new Date();
+startLearningButton.addEventListener('click', () => {
+	document.querySelector('#learning').scrollIntoView({ behavior: 'smooth' });
+});
 
-console.log("BSmart is running!");
-console.log("Today:", today.toDateString());
+focusCards.forEach((card) => {
+	card.addEventListener('click', () => {
+		if (card.dataset.page) {
+			window.location.href = card.dataset.page;
+			return;
+		}
+
+		focusCards.forEach((focusCard) => {
+			focusCard.setAttribute('aria-pressed', String(focusCard === card));
+		});
+	});
+});
