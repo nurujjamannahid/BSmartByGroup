@@ -1,128 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#101426">
-  <meta name="description" content="BSmart - Your Smart Life Companion">
-  <title>BSmart - Dashboard</title>
-  <link rel="stylesheet" href="css/style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BSmart Dashboard</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<aside class="sidebar">
+		<div class="logo">B<span>Smart</span></div>
+		<div class="menu-label">MENU</div>
+		<nav aria-label="Main navigation">
+			<a class="active" href="#dashboard">Dashboard</a>
+			<a href="#learning">Learning</a>
+			<a href="#progress">Progress</a>
+			<a href="#others">Others</a>
+		</nav>
+		<div class="sidebar-bottom">Keep growing</div>
+	</aside>
 
-  <aside class="sidebar">
-    <h2 class="logo">B<span>Smart</span></h2>
-    <p class="menu-label">MAIN MENU</p>
+	<main class="main" id="dashboard">
+		<header class="topbar">
+			<div>
+				<p class="muted">Your learning space</p>
+				<h2>Dashboard</h2>
+			</div>
+			<div class="user-icon" aria-label="User profile">BS</div>
+		</header>
 
-    <nav>
-      <a class="active" href="index.html">🏠 Dashboard</a>
-      <a href="pages/study.html">📚 Study Planner</a>
-      <a href="#">📝 My Notes</a>
-      <a href="#">📅 Calendar</a>
-      <a href="#">✅ Tasks</a>
-      <a href="#">🤖 AI Assistant</a>
-      <a href="pages/career.html">💼 Career</a>
-      <a href="pages/health.html">❤️ Health & Safety</a>
-      <a href="pages/profile.html">👤 My Profile</a>
-    </nav>
+		<section class="welcome">
+			<div class="welcome-tag">WELCOME BACK</div>
+			<h1>Become smarter<br>every day.</h1>
+			<p>Small steps today create better opportunities tomorrow.</p>
+			<button id="start-learning" type="button">Start learning</button>
+		</section>
 
-    <div class="sidebar-bottom">
-      <p>✨ Your Future Starts Here</p>
-    </div>
-  </aside>
+		<section class="section" id="learning">
+			<div class="section-heading">
+				<h2>Choose your focus</h2>
+				<p>Build useful skills at your own pace.</p>
+			</div>
+			<div class="cards focus-cards" aria-label="Focus areas">
+				<button class="card focus-card" type="button" aria-pressed="false">
+					<span class="focus-image focus-image--growth" role="img" aria-label="A person growing alongside an AI assistant"><span aria-hidden="true">🌱</span><span aria-hidden="true">🤖</span></span>
+					<span class="focus-card-content"><span class="focus-title">Personal Growth &amp; AI</span><span class="focus-description">Build confidence, understand AI, and use it to reach your goals.</span></span>
+				</button>
+				<button class="card focus-card" type="button" aria-pressed="false">
+					<span class="focus-image focus-image--thinking" role="img" aria-label="Books and a bright idea"><span aria-hidden="true">📚</span><span aria-hidden="true">💡</span></span>
+					<span class="focus-card-content"><span class="focus-title">Knowledge &amp; Thinking</span><span class="focus-description">Explore new ideas and strengthen your critical-thinking skills.</span></span>
+				</button>
+				<button class="card focus-card" type="button" aria-pressed="false">
+					<span class="focus-image focus-image--study" role="img" aria-label="A study desk with books and notes"><span aria-hidden="true">📖</span><span aria-hidden="true">✏️</span></span>
+					<span class="focus-card-content"><span class="focus-title">User &amp; Study Management</span><span class="focus-description">Sign up, manage your profile, plan study routines, and organize notes and quizzes.</span></span>
+				</button>
+				<button class="card focus-card" type="button" aria-pressed="false" data-page="productivity.html">
+					<span class="focus-image focus-image--productivity" role="img" aria-label="A calendar and completed tasks"><span aria-hidden="true">🗓️</span><span aria-hidden="true">✅</span></span>
+					<span class="focus-card-content"><span class="focus-title">Productivity Management</span><span class="focus-description">Plan tasks, set priorities, and build reminders, habits, and goals.</span></span>
+				</button>
+				<button class="card focus-card" type="button" aria-pressed="false">
+					<span class="focus-image focus-image--career" role="img" aria-label="A briefcase for career development"><span aria-hidden="true">💼</span><span aria-hidden="true">🚀</span></span>
+					<span class="focus-card-content"><span class="focus-title">Career Development</span><span class="focus-description">Practice digital, English, and communication skills, and prepare your CV and interviews.</span></span>
+				</button>
+			</div>
+		</section>
 
-  <main class="main">
+		<section class="section" id="progress">
+			<div class="section-heading">
+				<h2>Your overview</h2>
+				<p>A quick look at your progress.</p>
+			</div>
+			<div class="overview">
+				<article class="card"><p>Lessons completed</p><h2>12</h2></article>
+				<article class="card"><p>Learning streak</p><h2>5 days</h2></article>
+				<article class="card"><p>Next milestone</p><h2>80%</h2></article>
+			</div>
+		</section>
 
-    <header class="topbar">
-      <div>
-        <p class="muted">WELCOME TO BSMART</p>
-        <h2>Dashboard</h2>
-      </div>
-      <div class="user-icon">U</div>
-    </header>
-
-    <section class="welcome">
-      <p class="welcome-tag">YOUR SMART LIFE COMPANION</p>
-      <h1>Make Today<br>Count.</h1>
-      <p>Learn smarter. Grow faster. Achieve more.</p>
-      <button onclick="showMessage()">Explore BSmart →</button>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <h2>Quick Access</h2>
-        <p>Explore your tools</p>
-      </div>
-
-      <div class="cards">
-        <article class="card">
-          <span>📚</span>
-          <h3>Study Planner</h3>
-          <p>Organize your learning.</p>
-        </article>
-
-        <article class="card">
-          <span>🤖</span>
-          <h3>AI Assistant</h3>
-          <p>Your intelligent helper.</p>
-        </article>
-
-        <article class="card">
-          <span>🎯</span>
-          <h3>My Goals</h3>
-          <p>Stay focused every day.</p>
-        </article>
-
-        <article class="card">
-          <span>💼</span>
-          <h3>Career Growth</h3>
-          <p>Build your future skills.</p>
-        </article>
-
-        <article class="card">
-          <span>📝</span>
-          <h3>My Notes</h3>
-          <p>Keep your ideas organized.</p>
-        </article>
-
-        <article class="card">
-          <span>❤️</span>
-          <h3>Health & Safety</h3>
-          <p>Learn essential safety knowledge.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <h2>Today's Overview</h2>
-        <p>Your daily progress</p>
-      </div>
-
-      <div class="overview">
-        <div class="card">
-          <p class="muted">Tasks Completed</p>
-          <h2>0 / 5</h2>
-        </div>
-
-        <div class="card">
-          <p class="muted">Study Hours</p>
-          <h2>0 hrs</h2>
-        </div>
-
-        <div class="card">
-          <p class="muted">Daily Progress</p>
-          <h2>0%</h2>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      © 2026 BSmart. All rights reserved.
-    </footer>
-
-  </main>
-
-  <script src="js/app.js"></script>
+		<footer>BSmart &copy; 2026</footer>
+	</main>
+	<script src="app.js"></script>
 </body>
 </html>
