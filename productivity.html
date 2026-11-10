@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#101426">
+	<title>Productivity Management | BSmart</title>
+	<style>
+		:root {
+			font-family: Arial, sans-serif;
+			color: #f5f6ff;
+			background: #101426;
+			font-synthesis: none;
+			text-rendering: optimizeLegibility;
+			-webkit-font-smoothing: antialiased;
+			--muted: #929bb5;
+			--card: #1b2239;
+			--border: #2b3452;
+			--accent: #8b7cff;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			min-height: 100vh;
+			margin: 0;
+			background: #101426;
+		}
+
+		button {
+			font: inherit;
+		}
+
+		.page {
+			width: min(100% - 32px, 1040px);
+			margin: 0 auto;
+			padding: 24px 0 40px;
+		}
+
+		.topbar {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			margin-bottom: 30px;
+		}
+
+		.back-button {
+			display: grid;
+			width: 44px;
+			height: 44px;
+			flex: 0 0 44px;
+			place-items: center;
+			border: 1px solid var(--border);
+			border-radius: 13px;
+			background: var(--card);
+			color: #f5f6ff;
+			font-size: 22px;
+			cursor: pointer;
+			transition: background 180ms ease, transform 180ms ease;
+		}
+
+		.back-button:hover {
+			transform: translateX(-2px);
+			background: #252e4a;
+		}
+
+		.back-button:focus-visible,
+		.option-card:focus-visible {
+			outline: 3px solid var(--accent);
+			outline-offset: 3px;
+		}
+
+		.heading {
+			min-width: 0;
+		}
+
+		.eyebrow {
+			margin: 0 0 5px;
+			color: var(--muted);
+			font-size: 13px;
+		}
+
+		h1 {
+			margin: 0;
+			font-size: clamp(22px, 5vw, 30px);
+			line-height: 1.2;
+		}
+
+		.intro {
+			margin: 8px 0 0;
+			color: var(--muted);
+			font-size: 14px;
+		}
+
+		.option-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 14px;
+		}
+
+		.option-card {
+			display: flex;
+			min-height: 190px;
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 18px;
+			border: 1px solid var(--border);
+			border-radius: 17px;
+			background: var(--card);
+			box-shadow: 0 8px 22px rgb(0 0 0 / 14%);
+			color: inherit;
+			text-align: left;
+			cursor: pointer;
+			transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+		}
+
+		.option-card:hover {
+			transform: translateY(-3px);
+			border-color: #6558ae;
+			box-shadow: 0 12px 26px rgb(0 0 0 / 22%);
+		}
+
+		.option-card[aria-pressed="true"] {
+			border-color: var(--accent);
+			box-shadow: 0 0 0 2px rgb(139 124 255 / 28%), 0 8px 22px rgb(0 0 0 / 14%);
+		}
+
+		.option-icon {
+			display: grid;
+			width: 46px;
+			height: 46px;
+			place-items: center;
+			margin-bottom: 15px;
+			border: 1px solid rgb(255 255 255 / 8%);
+			border-radius: 14px;
+			background: var(--icon-bg, #292748);
+			font-size: 23px;
+		}
+
+		.option-title {
+			margin: 0;
+			font-size: 16px;
+			line-height: 1.25;
+		}
+
+		.option-description {
+			margin: 7px 0 0;
+			color: #a5aec5;
+			font-size: 13px;
+			line-height: 1.4;
+		}
+
+		.option-summary {
+			margin: auto 0 0;
+			padding-top: 15px;
+			color: #b9b0ff;
+			font-size: 12px;
+			line-height: 1.4;
+		}
+
+		.status {
+			min-height: 20px;
+			margin: 18px 2px 0;
+			color: var(--muted);
+			font-size: 13px;
+		}
+
+		.status:empty {
+			display: none;
+		}
+
+		@media (min-width: 700px) {
+			.page {
+				padding-top: 42px;
+			}
+
+			.option-grid {
+				gap: 18px;
+			}
+
+			.option-card {
+				min-height: 205px;
+				padding: 22px;
+			}
+		}
+
+		@media (max-width: 360px) {
+			.page {
+				width: min(100% - 22px, 1040px);
+			}
+
+			.option-grid {
+				gap: 10px;
+			}
+
+			.option-card {
+				min-height: 184px;
+				padding: 14px;
+			}
+
+			.option-title {
+				font-size: 15px;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			* {
+				scroll-behavior: auto !important;
+				transition-duration: 0.01ms !important;
+			}
+		}
+	</style>
+	<script src="productivity.js" defer></script>
+</head>
+<body>
+	<main class="page">
+		<header class="topbar">
+			<button class="back-button" id="back-button" type="button" aria-label="Go back to the previous screen">←</button>
+			<div class="heading">
+				<p class="eyebrow" id="today-label"></p>
+				<h1>Productivity Management</h1>
+				<p class="intro">Make time for what matters.</p>
+			</div>
+		</header>
+
+		<section class="option-grid" aria-label="Productivity options">
+			<button class="option-card" type="button" data-option="tasks" aria-pressed="false" style="--icon-bg: #39336f">
+				<span class="option-icon" aria-hidden="true">✓</span>
+				<h2 class="option-title">Tasks</h2>
+				<p class="option-description">Plan and prioritize what needs doing.</p>
+				<p class="option-summary" id="tasks-summary"></p>
+			</button>
+			<button class="option-card" type="button" data-option="daily" aria-pressed="false" style="--icon-bg: #284b65">
+				<span class="option-icon" aria-hidden="true">☀</span>
+				<h2 class="option-title">Daily</h2>
+				<p class="option-description">Today's to-do list and progress.</p>
+				<p class="option-summary" id="daily-summary"></p>
+			</button>
+			<button class="option-card" type="button" data-option="weekly" aria-pressed="false" style="--icon-bg: #285c58">
+				<span class="option-icon" aria-hidden="true">▦</span>
+				<h2 class="option-title">Weekly</h2>
+				<p class="option-description">See your week and track progress.</p>
+				<p class="option-summary" id="weekly-summary"></p>
+			</button>
+			<button class="option-card" type="button" data-option="monthly" aria-pressed="false" style="--icon-bg: #77532f">
+				<span class="option-icon" aria-hidden="true">▣</span>
+				<h2 class="option-title">Monthly</h2>
+				<p class="option-description">Review completed and pending tasks.</p>
+				<p class="option-summary" id="monthly-summary"></p>
+			</button>
+			<button class="option-card" type="button" data-option="calendar" aria-pressed="false" style="--icon-bg: #354f77">
+				<span class="option-icon" aria-hidden="true">▦</span>
+				<h2 class="option-title">Calendar</h2>
+				<p class="option-description">See task dates and plan ahead.</p>
+				<p class="option-summary" id="calendar-summary"></p>
+			</button>
+			<button class="option-card" type="button" data-option="habits" aria-pressed="false" style="--icon-bg: #426c77">
+				<span class="option-icon" aria-hidden="true">↗</span>
+				<h2 class="option-title">Habit Tracker</h2>
+				<p class="option-description">Build routines and grow your streak.</p>
+				<p class="option-summary" id="habits-summary"></p>
+			</button>
+			<button class="option-card" type="button" data-option="goals" aria-pressed="false" style="--icon-bg: #6c5689">
+				<span class="option-icon" aria-hidden="true">⚑</span>
+				<h2 class="option-title">Goals</h2>
+				<p class="option-description">Track goals, deadlines, and next steps.</p>
+				<p class="option-summary" id="goals-summary"></p>
+			</button>
+		</section>
+
+		<p class="status" id="page-status" role="status" aria-live="polite"></p>
+	</main>
+</body>
+</html>
